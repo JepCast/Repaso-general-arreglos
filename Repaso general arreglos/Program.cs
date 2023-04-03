@@ -1,40 +1,65 @@
 ﻿
 void matriz ()
 {
-    string[] nombre = new string[]
+
+    string usn;
+    ushort cn;
+
+    Console.WriteLine("Hola, bienveni@, por favor dime cual es tu nombre:");
+        usn = Console.ReadLine();
+
+    do
     {
-        "Anderson", "Brandon", "Yeimi", "Fatima", "Vivian"
-    };
-    
-    
-   foreach(string n in nombre)
-   {
-    Console.WriteLine("nombre=" + n);
-   }
+        Console.WriteLine($"\nHola {usn}, por favor dime la cantidad de nombres que deseas introducir:");
+            cn = UInt16.Parse(Console.ReadLine());
+        Console.WriteLine("\nAhora inserta a continuación los nombres:");
+    } while (cn <= 0);
 
-    int[] notas = new int[]
+
+    string[] name = new string[cn];
+    
+    for (int i = 0; i < cn; i++)
     {
-        50,90,85,73,95
-    };
+        Console.WriteLine("\nIngrese el nombre: ");
+        name[i] = Console.ReadLine();
+    }
+    
+    Console.WriteLine("\nLos nombres que has insertados son:");
 
-    //int promedio = 0;
-    //foreach (int n in notas)
-    //{ 
-    //    promedio= promedio + n;
-    //};
+    foreach (string n in name)
+    {
+        Console.WriteLine(n);
+    }
 
-    //promedio = promedio / notas.Length;
-    //Console.WriteLine("\nEl promedio de las notas es:" + promedio);
+    Console.WriteLine($"\nAhora por favor inserta las notas:");
+    
+    int[] notas = new int[cn];
 
-   
+    for (int i = 0; i < cn; i++)
+    {
+        Console.WriteLine("Ingresa la nota de " + name[i]);
+        notas[i] = Convert.ToInt32(Console.ReadLine());
+    }
+
     int mayor = 0;
-    for (int i = 0; i < 5; i++)
+    for (int i = 1; i < notas.Length; i++)
     {
-        if (notas > mayor)
+        if (notas[i] > notas[mayor])
         {
-            mayor = notas;
+            mayor = i;
         }
     }
-    Console.WriteLine("El numero mayor es: " + mayor);
+    Console.WriteLine($"\n{usn} la nota más alta es: " + notas[mayor]);
+
+    int menor = 0;
+    for (int i = 100; i < notas.Length; i++)
+    {
+        if (i < notas[menor])
+        {
+            menor = i;
+        }
+    }
+    Console.WriteLine($"Y la nota más baja es: " + notas[menor]);
+    Console.ReadKey();
 }
 matriz();
